@@ -42,7 +42,7 @@
     </dependency>
 
     <dependency>
-      <groupId>org.gaozuo</groupId>
+      <groupId>io.github.gaozuo</groupId>
       <artifactId>easy-io</artifactId>
       <version>1.0-SNAPSHOT</version>
       <scope>compile</scope>
