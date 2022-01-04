@@ -1,15 +1,22 @@
 package org.gaozuo.easyminio.operation;
 
+import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
+import io.minio.RemoveBucketArgs;
+import io.minio.errors.*;
 import org.assertj.core.api.Assertions;
 import org.gaozuo.easyio.access.PathAccess;
 import org.gaozuo.easyio.access.ResourceBucket;
 import org.gaozuo.easyio.source.ObjectResource;
 import org.gaozuo.easyio.source.PathResource;
 import org.gaozuo.easyminio.MinIoCreator;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class MinIoLocationTest {
@@ -19,6 +26,20 @@ public class MinIoLocationTest {
     @Before
     public void setUp() {
         client = MinIoCreator.client();
+        try {
+            client.makeBucket(MakeBucketArgs.builder().bucket("hr-objects").build());
+        } catch (Exception e) {
+
+        }
+    }
+
+    @After
+    public void teardown() {
+        try {
+            client.removeBucket(RemoveBucketArgs.builder().bucket("hr-objects").build());
+        } catch (Exception e) {
+
+        }
     }
 
     @Test
@@ -44,7 +65,7 @@ public class MinIoLocationTest {
 
         location = MinIoLocation.fromBucket("hr-objects", client);
         ResourceBucket resourceBucket = location.access().bucket();
-        Assertions.assertThat(resourceBucket.hasPathResource()).isTrue();
+        Assertions.assertThat(resourceBucket.hasPathResource()).isFalse();
         listResource(resourceBucket.listPathResource());
     }
 

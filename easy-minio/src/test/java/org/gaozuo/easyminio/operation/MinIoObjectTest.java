@@ -1,6 +1,8 @@
 package org.gaozuo.easyminio.operation;
 
+import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
+import io.minio.RemoveBucketArgs;
 import org.assertj.core.api.Assertions;
 import org.gaozuo.easyio.access.ObjectAccess;
 import org.gaozuo.easyio.access.PathAccess;
@@ -8,6 +10,7 @@ import org.gaozuo.easyio.access.ResourceBucket;
 import org.gaozuo.easyio.source.ObjectResource;
 import org.gaozuo.easyio.source.PathResource;
 import org.gaozuo.easyminio.MinIoCreator;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,6 +26,20 @@ public class MinIoObjectTest {
     @Before
     public void setUp() {
         client = MinIoCreator.client();
+        try {
+            client.makeBucket(MakeBucketArgs.builder().bucket("hr-objects").build());
+        } catch (Exception e) {
+
+        }
+    }
+
+    @After
+    public void teardown() {
+        try {
+            client.removeBucket(RemoveBucketArgs.builder().bucket("hr-objects").build());
+        } catch (Exception e) {
+
+        }
     }
 
     @Test
@@ -34,8 +51,9 @@ public class MinIoObjectTest {
     public void testGetAndExists() throws Exception {
         MinIoLocation location = MinIoLocation.fromBucket("hr-objects", client);
         ObjectResource objectResource = getOne(location.access().bucket().listPathResource());
-        Assertions.assertThat(objectResource).isNotNull();
-        ObjectAccess oa = objectResource.accessObject();
+        Assertions.assertThat(objectResource).isNull();
+        ObjectAccess oa = MinIoBucket.create(client).path("hr-objects").deep("kio").buildObject().accessObject();
+        oa.put(new ByteArrayInputStream("112".getBytes()), "112".getBytes().length, null);
         Assertions.assertThat(oa.exists()).isTrue();
         Assertions.assertThat(oa.getObject().getSource().read()).isNotEqualTo(-1);
     }
@@ -44,9 +62,9 @@ public class MinIoObjectTest {
     public void testPut() throws Exception {
         MinIoLocation location = MinIoLocation.fromBucket("hr-objects", client);
         ObjectResource objectResource = getOne(location.access().bucket().listPathResource());
-        Assertions.assertThat(objectResource).isNotNull();
-        ObjectAccess oa = objectResource.accessObject();
-        Assertions.assertThat(oa.exists()).isTrue();
+        Assertions.assertThat(objectResource).isNull();
+        ObjectAccess oa = MinIoBucket.create(client).path("hr-objects/jjk").buildObject().accessObject();
+        Assertions.assertThat(oa.exists()).isFalse();
         byte[] a = "{name: 'abc'}".getBytes();
         byte[] b = "{name: 'def'}".getBytes();
         byte[] buf = new byte[1024];
