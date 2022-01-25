@@ -5,7 +5,7 @@
 
   <groupId>io.github.gaozuo</groupId>
   <artifactId>easy-io</artifactId>
-  <version>y</version>
+  <version>1.0-SNAPSHOT</version>
 
   <name>easy-io</name>
   <!-- FIXME change it to the project's website -->
@@ -95,10 +95,9 @@
   </licenses>
 
   <scm>
-    <url>https://github.com/gaozuo/easy-io</url>
-    <connection>scm:git:ssh://github.com:gaozuo/easy-io.git</connection>
-    <developerConnection>scm:git:git@github.com:gaozuo/easy-io</developerConnection>
-    <tag>y</tag>
+    <url>https://github.com/gaozuo/easy-io/tree/main</url>
+    <connection>scm:git:https://github.com/gaozuo/easy-io.git</connection>
+    <developerConnection>scm:git:https://github.com/gaozuo/easy-io</developerConnection>
   </scm>
 
   <developers>
