@@ -5,7 +5,7 @@
 
   <groupId>io.github.gaozuo</groupId>
   <artifactId>easy-io</artifactId>
-  <version>0.1-SNAPSHOT</version>
+  <version>0.1</version>
 
   <name>easy-io</name>
   <description>resource easy operation api</description>
@@ -104,6 +104,7 @@
     <url>https://github.com/gaozuo/easy-io/tree/main</url>
     <connection>scm:git:https://github.com/gaozuo/easy-io.git</connection>
     <developerConnection>scm:git:https://github.com/gaozuo/easy-io</developerConnection>
+    <tag>easy-io-0.1</tag>
   </scm>
 
   <developers>
