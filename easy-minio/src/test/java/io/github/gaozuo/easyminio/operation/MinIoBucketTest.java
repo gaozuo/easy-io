@@ -1,8 +1,6 @@
 package io.github.gaozuo.easyminio.operation;
 
-import io.minio.MakeBucketArgs;
-import io.minio.MinioClient;
-import io.minio.RemoveBucketArgs;
+import io.minio.*;
 import org.assertj.core.api.Assertions;
 import io.github.gaozuo.easyio.source.PathResource;
 import io.github.gaozuo.easyio.source.PathResourceBuilder;
@@ -19,9 +17,15 @@ public class MinIoBucketTest {
     public void setUp() {
         client = MinIoCreator.client();
         try {
+            client.listObjects(ListObjectsArgs.builder().bucket("hr-objects").build()).forEach((item) -> {
+                try {
+                    client.removeObject(RemoveObjectArgs.builder().bucket("hr-objects").object(item.get().objectName()).build());
+                } catch (Exception e) {
+                }
+            });
+
             client.makeBucket(MakeBucketArgs.builder().bucket("hr-objects").build());
         } catch (Exception e) {
-
         }
     }
 
