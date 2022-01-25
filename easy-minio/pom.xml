@@ -6,11 +6,11 @@
 
   <groupId>io.github.gaozuo</groupId>
   <artifactId>easy-minio</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.1-SNAPSHOT</version>
 
   <name>easy-minio</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <description>easy operation for minio sdk</description>
+  <url>https://github.com/gaozuo/easy-io</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -44,7 +44,7 @@
     <dependency>
       <groupId>io.github.gaozuo</groupId>
       <artifactId>easy-io</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>0.1</version>
       <scope>compile</scope>
     </dependency>
 
@@ -66,6 +66,11 @@
 
   <build>
     <plugins>
+
+      <plugin>
+        <artifactId>maven-release-plugin</artifactId>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
@@ -105,6 +110,12 @@
             <goals>
               <goal>sign</goal>
             </goals>
+            <configuration>
+              <gpgArguments>
+                <arg>--pinentry-mode</arg>
+                <arg>loopback</arg>
+              </gpgArguments>
+            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -116,7 +127,7 @@
         <extensions>true</extensions>
         <configuration>
           <serverId>ossrh</serverId>
-          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <nexusUrl>https://s01.oss.sonatype.org</nexusUrl>
           <autoReleaseAfterClose>true</autoReleaseAfterClose>
         </configuration>
       </plugin>
