@@ -5,11 +5,11 @@
 
   <groupId>io.github.gaozuo</groupId>
   <artifactId>easy-io</artifactId>
-  <version>0.2-SNAPSHOT</version>
+  <version>0.1-SNAPSHOT</version>
 
   <name>easy-io</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <description>resource easy operation api</description>
+  <url>https://github.com/gaozuo/easy-io</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -104,7 +104,6 @@
     <url>https://github.com/gaozuo/easy-io/tree/main</url>
     <connection>scm:git:https://github.com/gaozuo/easy-io.git</connection>
     <developerConnection>scm:git:https://github.com/gaozuo/easy-io</developerConnection>
-    <tag>HEAD</tag>
   </scm>
 
   <developers>
