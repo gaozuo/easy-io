@@ -131,9 +131,9 @@
   </licenses>
 
   <scm>
-    <url>https://github.com/gaozuo/easy-io</url>
-    <connection>scm:git:ssh://github.com:gaozuo/easy-io.git</connection>
-    <developerConnection>scm:git:git@github.com:gaozuo/easy-io</developerConnection>
+    <url>https://github.com/gaozuo/easy-io/tree/main</url>
+    <connection>scm:git:https://github.com/gaozuo/easy-io.git</connection>
+    <developerConnection>scm:git:https://github.com/gaozuo/easy-io</developerConnection>
   </scm>
 
   <developers>
